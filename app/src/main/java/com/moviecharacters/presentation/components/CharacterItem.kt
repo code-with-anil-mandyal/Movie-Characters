@@ -1,11 +1,10 @@
 package com.moviecharacters.presentation.components
 
-import android.widget.Space
+import androidx.compose.foundation.clickable
 import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.Spacer
 import androidx.compose.foundation.layout.fillMaxWidth
-import androidx.compose.foundation.layout.height
 import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.shape.RoundedCornerShape
 import androidx.compose.material3.Card
@@ -15,7 +14,6 @@ import androidx.compose.runtime.Composable
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.draw.clip
-import androidx.compose.ui.draw.shadow
 import androidx.compose.ui.graphics.RectangleShape
 import androidx.compose.ui.layout.ContentScale
 import androidx.compose.ui.text.font.FontWeight
@@ -26,7 +24,8 @@ import com.moviecharacters.domain.model.Characters
 @Composable
 fun CharacterItem(
     modifier: Modifier,
-    character : Characters
+    character : Characters,
+    onClick : (Characters) -> Unit
 ){
 
     Column(
@@ -38,7 +37,9 @@ fun CharacterItem(
             shape = RoundedCornerShape(8.dp)
         ) {
             Column(
-                modifier = modifier.fillMaxWidth(),
+                modifier = modifier.fillMaxWidth().clickable{
+                    onClick(character)
+                },
                 verticalArrangement = Arrangement.Center,
                 horizontalAlignment = Alignment.CenterHorizontally
             ) {
